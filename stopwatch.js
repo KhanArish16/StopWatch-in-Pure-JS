@@ -1,12 +1,20 @@
-let [second, minute, hour] = ["00", "00", "00"];
+let [second, minute, hour] = ["0", "0", "0"];
 // console.log(second, minute, hour);
 let time = [];
 let stoptime = true;
+let record = document.createElement("div");
 
 let ulList;
 
+let container = document.createElement("div");
+container.classList.add("container");
+
 let displayTime = document.createElement("div");
+displayTime.classList.add("timerDisplay");
 displayTime.textContent = "00  : 00 : 00";
+
+let buttons = document.createElement("div");
+buttons.classList.add("buttons");
 
 let startBtn = document.createElement("button");
 startBtn.textContent = "Start";
@@ -20,7 +28,9 @@ reset.textContent = "reset";
 let sprint = document.createElement("button");
 sprint.textContent = "sprint";
 
-document.body.append(startBtn, stopBtn, reset, sprint, displayTime);
+buttons.append(startBtn, stopBtn, reset, sprint);
+container.append(displayTime, buttons);
+document.body.append(container, record);
 
 startBtn.addEventListener("click", () => startTime());
 stopBtn.addEventListener("click", () => {
@@ -43,7 +53,7 @@ reset.addEventListener("click", () => {
   hour = "00";
   minute = "00";
   second = "00";
-  displayTime.textContent = "00  : 00 : 00";
+  displayTime.innerHTML = "00  : 00 : 00";
   clearInterval(time);
   displaySprint(false);
 });
@@ -53,7 +63,7 @@ sprint.addEventListener("click", () => {
 
   if (!ulList) {
     ulList = document.createElement("ul");
-    document.body.append(ulList);
+    record.append(ulList);
   }
 
   displaySprint(true);
@@ -75,16 +85,22 @@ function displayTimer() {
     }
   }
   //   console.log(second, minute);
-  displayTime.textContent = `${hour} : ${minute} : ${second}`;
+  let h = hour < 10 ? "0" + hour : hour;
+  let m = minute < 10 ? "0" + minute : minute;
+  let s = second < 10 ? "0" + second : second;
+
+  displayTime.innerHTML = `${h} : ${m} : ${s}`;
 }
 
 function displaySprint(i) {
   let displayd = document.createElement("li");
   displayd.textContent = `${hour} : ${minute} : ${second} `;
   if (i) {
+    record.classList.add("record");
     ulList.append(displayd);
   } else {
-    document.body.removeChild(ulList);
+    record.classList.remove();
+    record.removeChild(ulList);
     ulList = null;
   }
 }
