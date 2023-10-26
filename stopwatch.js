@@ -30,7 +30,7 @@ sprint.textContent = "sprint";
 
 buttons.append(startBtn, stopBtn, reset, sprint);
 container.append(displayTime, buttons);
-document.body.append(container, record);
+document.body.append(container);
 
 startBtn.addEventListener("click", () => startTime());
 stopBtn.addEventListener("click", () => {
@@ -64,7 +64,7 @@ sprint.addEventListener("click", () => {
   console.log(hour, minute, second);
 
   if (!ulList) {
-    ulList = document.createElement("ul");
+    ulList = document.createElement("ol");
     record.append(ulList);
   }
 
@@ -100,7 +100,9 @@ function displaySprint(i) {
   if (i) {
     record.classList.add("record");
     ulList.append(displayd);
+    document.body.append(record);
   } else {
+    document.body.removeChild(record);
     record.classList.remove();
     record.removeChild(ulList);
     ulList = null;
