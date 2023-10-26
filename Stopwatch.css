@@ -38,7 +38,7 @@ body {
 .buttons button {
   width: 120px;
   height: 45px;
-  background-color: #205e94;
+
   color: #ffffff;
   border: none;
   font-family: ‘Poppins’, sans-serif;
@@ -54,10 +54,13 @@ body {
   background-color: #d23332;
 }
 .buttons button:nth-last-child(2) {
-  background-color: #000000;
+  background-color: #484848;
 }
 .buttons button:nth-last-child(1) {
   background-color: #205e94;
+}
+.resume {
+  background-color: #20b380 !important;
 }
 .record {
   background-color: #ffffff;

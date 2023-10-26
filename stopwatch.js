@@ -38,11 +38,13 @@ stopBtn.addEventListener("click", () => {
     clearInterval(time);
     stoptime = false;
     stopBtn.textContent = "resume";
+    stopBtn.classList.add("resume");
     console.log("stop");
   } else if (stoptime == false) {
     stoptime = true;
     startTime();
     stopBtn.textContent = "stop";
+    stopBtn.classList.remove("resume");
     console.log("resume");
   }
 });
